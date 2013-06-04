@@ -1,6 +1,7 @@
 /* configfile.c: parsing of config files
  *
  * Copyright (C) 2008 Lars Hjemli
+ * Copyright (C) 2013 Jason A. Donenfeld <Jason@zx2c4.com>. All Rights Reserved.
  *
  * Licensed under GNU General Public License v2
  *   (see COPYING for full license text)
@@ -52,7 +53,6 @@ static int read_config_line(FILE *f, char *line, const char **value, int bufsize
 			i = 0;
 			continue;
 		} else if (c == '\n' || c == EOF) {
-			line[i] = 0;
 			break;
 		} else {
 			line[i] = c;
@@ -60,7 +60,7 @@ static int read_config_line(FILE *f, char *line, const char **value, int bufsize
 		isname = 1;
 		i++;
 	}
-	line[i + 1] = 0;
+	line[i] = 0;
 	return i;
 }
 
